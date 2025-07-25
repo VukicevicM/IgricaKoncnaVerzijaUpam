@@ -28,10 +28,12 @@ namespace BazaIgrice
                 CREATE TABLE users(
                         username TEXT PRIMARY KEY,
                         password TEXT NOT NULL,
-                        lvl1_narejen INTEGER DEFAULT 0,
+                        najvisji_nivo INTEGER DEFAULT 0,     
                         lvl1_tocke INTEGER DEFAULT 0,
-                        lvl2_narejen INTEGER DEFAULT 0,
-                        lvl2_tocke INTEGER DEFAULT 0
+                        lvl2_tocke INTEGER DEFAULT 0,
+                        lvl3_tocke INTEGER DEFAULT 0,
+                        lvl4_tocke INTEGER DEFAULT 0,
+                        lvl5_tocke INTEGER DEFAULT 0
                     );";
 
                 new System.Data.SQLite.SQLiteCommand(narediTabelo, conn).ExecuteNonQuery();
@@ -120,6 +122,56 @@ namespace BazaIgrice
             {
                 Console.WriteLine("Napaka pri brisanju uporabnika: " + ex.Message);
             }
+        }
+
+        public static int DobijNajvisjiNivo(string username)
+        {
+            var conn = new System.Data.SQLite.SQLiteConnection(connectionString);
+            conn.Open();
+
+            var selectCommand = new System.Data.SQLite.SQLiteCommand("SELECT najvisji_nivo FROM users WHERE username = @u", conn);
+            selectCommand.Parameters.AddWithValue("@u", username);
+            int rezultat = System.Convert.ToInt32(selectCommand.ExecuteScalar());
+
+            conn.Close();
+            return rezultat; // Vrnemo najvišji nivo uporabnika
+        }
+
+        public static void PosodobiNivoInTocke(string username, int nivo, int tocke)
+        {
+            var conn = new System.Data.SQLite.SQLiteConnection(connectionString);
+            conn.Open();
+
+            var getCommand = new System.Data.SQLite.SQLiteCommand($"SELECT lvl{nivo}_tocke, najvisji_nivo FROM users WHERE username = @u", conn);
+            getCommand.Parameters.AddWithValue("@u", username);
+
+            int trenutneTocke = 0;
+            int trenutniNajvisjiNivo = 0;
+
+            using (var reader = getCommand.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    trenutneTocke = reader.GetInt32(0);
+                    trenutniNajvisjiNivo = reader.GetInt32(1);
+                }
+            }
+
+            int maxTocke = Math.Max(trenutneTocke, tocke);
+            var updateCommand = new System.Data.SQLite.SQLiteCommand($"UPDATE users SET lvl{nivo}_tocke = @t WHERE username = @u", conn);
+            updateCommand.Parameters.AddWithValue("@t", maxTocke);
+            updateCommand.Parameters.AddWithValue("@u", username);
+            updateCommand.ExecuteNonQuery();
+
+            if(nivo > trenutniNajvisjiNivo)
+            {
+                var updateNivoCommand = new System.Data.SQLite.SQLiteCommand("UPDATE users SET najvisji_nivo = @n WHERE username = @u", conn);
+                updateNivoCommand.Parameters.AddWithValue("@n", nivo);
+                updateNivoCommand.Parameters.AddWithValue("@u", username);
+                updateNivoCommand.ExecuteNonQuery();
+            }
+
+            conn.Close();
         }
     }
 

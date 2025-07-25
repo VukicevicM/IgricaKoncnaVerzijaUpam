@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36121.58 d17.14
+VisualStudioVersion = 17.14.36121.58
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Igrica", "Igrica\Igrica.csproj", "{DA65BE21-2B3D-41BC-9763-F95BC4667DB0}"
 EndProject
@@ -10,6 +10,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prijava", "Prijava\Prijava.csproj", "{B9F8D15F-F621-4C18-AA9C-99B46CED7050}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin", "Admin\Admin.csproj", "{164A2C91-AE65-4F8A-8C7D-A8DCED06CD22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meni", "Meni\Meni.csproj", "{43A94995-DDF6-430E-BF7E-70D9B6C84BB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrejanjeNastavitev", "UrejanjeNastavitev\UrejanjeNastavitev.csproj", "{2FCBBE87-91DB-4891-9030-C3C6AFB847F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{164A2C91-AE65-4F8A-8C7D-A8DCED06CD22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{164A2C91-AE65-4F8A-8C7D-A8DCED06CD22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{164A2C91-AE65-4F8A-8C7D-A8DCED06CD22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43A94995-DDF6-430E-BF7E-70D9B6C84BB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43A94995-DDF6-430E-BF7E-70D9B6C84BB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43A94995-DDF6-430E-BF7E-70D9B6C84BB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43A94995-DDF6-430E-BF7E-70D9B6C84BB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FCBBE87-91DB-4891-9030-C3C6AFB847F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FCBBE87-91DB-4891-9030-C3C6AFB847F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FCBBE87-91DB-4891-9030-C3C6AFB847F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FCBBE87-91DB-4891-9030-C3C6AFB847F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

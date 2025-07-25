@@ -63,7 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="ProgramIgrica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -74,6 +74,10 @@
     <ProjectReference Include="..\BazaIgrice\BazaIgrice.csproj">
       <Project>{aca27384-0c55-45a5-a816-44ef088aca13}</Project>
       <Name>BazaIgrice</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Meni\Meni.csproj">
+      <Project>{43a94995-ddf6-430e-bf7e-70d9b6c84bb3}</Project>
+      <Name>Meni</Name>
     </ProjectReference>
     <ProjectReference Include="..\Prijava\Prijava.csproj">
       <Project>{b9f8d15f-f621-4c18-aa9c-99b46ced7050}</Project>
