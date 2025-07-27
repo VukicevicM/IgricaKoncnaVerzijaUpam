@@ -81,6 +81,10 @@
       <Project>{aca27384-0c55-45a5-a816-44ef088aca13}</Project>
       <Name>BazaIgrice</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Osnova\Osnova.csproj">
+      <Project>{84acd03d-e65c-4fcf-8874-5d8ce40c81cd}</Project>
+      <Name>Osnova</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UrejanjeNastavitev\UrejanjeNastavitev.csproj">
       <Project>{2fcbbe87-91db-4891-9030-c3c6afb847f8}</Project>
       <Name>UrejanjeNastavitev</Name>

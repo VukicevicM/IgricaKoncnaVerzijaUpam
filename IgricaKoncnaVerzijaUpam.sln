@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meni", "Meni\Meni.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrejanjeNastavitev", "UrejanjeNastavitev\UrejanjeNastavitev.csproj", "{2FCBBE87-91DB-4891-9030-C3C6AFB847F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knjiznica", "Knjiznica\Knjiznica.csproj", "{9D04774B-5A78-4C74-8830-612E9EE0CA8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Osnova", "Osnova\Osnova.csproj", "{84ACD03D-E65C-4FCF-8874-5D8CE40C81CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{2FCBBE87-91DB-4891-9030-C3C6AFB847F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FCBBE87-91DB-4891-9030-C3C6AFB847F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FCBBE87-91DB-4891-9030-C3C6AFB847F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D04774B-5A78-4C74-8830-612E9EE0CA8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D04774B-5A78-4C74-8830-612E9EE0CA8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D04774B-5A78-4C74-8830-612E9EE0CA8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D04774B-5A78-4C74-8830-612E9EE0CA8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84ACD03D-E65C-4FCF-8874-5D8CE40C81CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84ACD03D-E65C-4FCF-8874-5D8CE40C81CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84ACD03D-E65C-4FCF-8874-5D8CE40C81CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84ACD03D-E65C-4FCF-8874-5D8CE40C81CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

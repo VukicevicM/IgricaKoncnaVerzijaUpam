@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BazaIgrice;
 using UrejanjeNastavitev;
+using Osnova;
 
 namespace Meni
 {
@@ -38,6 +39,7 @@ namespace Meni
         private void InitializeControls()
         {
             int najvisjiNivo = RazredBazaIgrice.DobijNajvisjiNivo(Nastavitve.ImeIgralca);
+
 
             var layout = new FlowLayoutPanel()
             {
@@ -84,6 +86,27 @@ namespace Meni
                 Font = new Font("Segoe UI", this.Height / 45f, FontStyle.Regular),
                 Margin = new Padding(10)
             };
+
+            var btnIzhod = new Button()
+            {
+                Text = "Izhod iz igre",
+                Width = this.Width / 3,
+                Height = this.Height / 12,
+                Font = new Font("Segoe UI", this.Height / 45f, FontStyle.Regular),
+                Margin = new Padding(10),
+                BackColor = Color.LightCoral
+            };
+
+            btnIzhod.Click += (s, e) =>
+            {
+                var result = MessageBox.Show("Ali res želiš zapreti igro?", "Potrditev", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    Application.Exit();
+                }
+            };
+
+            layout.Controls.Add(btnIzhod);
 
             btnNastavitve.Click += (s, e) =>
             {
@@ -135,8 +158,17 @@ namespace Meni
 
         private void ZaženiLevel(int nivo)
         {
-            MessageBox.Show($"Začenjam Level {nivo} - tukaj bo odprta nova forma za igro.");
+            //MessageBox.Show($"Začenjam Level {nivo} - tukaj bo odprta nova forma za igro.");
             // TODO: Implementiraj zagon dejanske igre/forma za nivo
+            //Temporary
+            this.Hide();
+
+            using (var levelForm = new Lvl1())
+            {
+                levelForm.ShowDialog();
+            }
+
+            this.Show();
         }
 
         public void PokaziMeni()
