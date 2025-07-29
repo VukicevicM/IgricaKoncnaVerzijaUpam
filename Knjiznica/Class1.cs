@@ -216,6 +216,8 @@ namespace Knjiznica
             return horizontallyAligned && verticallyClose;
         }
 
+        
+
     }
 
     public class Block
@@ -294,9 +296,23 @@ namespace Knjiznica
         private const int MAX_COUNTER = 15;
         private bool zbrana = false;
         public Rectangle Obmocje;
+        private Image izbranaRiba;
+        private DateTime? casZajetja = null;
 
-        private Image r1 = Properties.Resources.R1;
-        private Image r2 = Properties.Resources.R2;
+
+
+        //private Image r1 = Properties.Resources.R1;
+        private Image niRibe = Properties.Resources.R2;
+
+        private static readonly Image[] moznostiRibic = new Image[]
+{
+            Properties.Resources.R1,
+            Properties.Resources.R3,
+            Properties.Resources.R4,
+            Properties.Resources.R5
+        };
+
+        private static readonly Random rnd = new Random();
 
         public Ribica(int x, int y)
         {
@@ -304,6 +320,8 @@ namespace Knjiznica
             this.y = y;
             this.originalY = y;
             Obmocje = new Rectangle(x, y, 25, 15);
+
+            izbranaRiba = moznostiRibic[rnd.Next(moznostiRibic.Length)];
         }
 
         public void Posodobi()
@@ -325,11 +343,11 @@ namespace Knjiznica
         {
             if (zbrana)
             {
-                g.DrawImage(r2, Obmocje.X - kameraX, Obmocje.Y);
+                g.DrawImage(niRibe, Obmocje.X - kameraX, Obmocje.Y);
             }
             else
             {
-                g.DrawImage(r1, Obmocje.X - kameraX, Obmocje.Y);
+                g.DrawImage(izbranaRiba, Obmocje.X - kameraX, Obmocje.Y);
             }
         }
 
@@ -338,8 +356,141 @@ namespace Knjiznica
             if (!zbrana && Obmocje.IntersectsWith(macka.GetWorldRectangle()))
             {
                 zbrana = true;
+                casZajetja = DateTime.Now; // ✅ remember when it was picked up
                 macka.SteviloRibic++;
             }
+        }
+
+        public bool JeSeVidna(TimeSpan trajanje)
+        {
+            if (!zbrana) return true; // still floating
+            return DateTime.Now - casZajetja < trajanje; // disappear after time passes
+        }
+
+    }
+
+    public class Pes
+    {
+        private int x, y;
+        private int width = 100;
+        private int height = 70;
+
+        private int smer = 1;
+        private int hitrost = 3;
+        private int mejaLevo, mejaDesno;
+
+        private Image[] slikeHoje;
+        private int trenutniFrame = 0;
+        private DateTime casZadnjeAnimacije = DateTime.Now;
+        private const int MILISEKUND_NA_FRAME = 100;
+
+        public Rectangle Obmocje => new Rectangle(x, y, width, height);
+
+        public Pes(int y, int mejaLevo, int mejaDesno)
+        {
+            this.x = mejaLevo;
+            this.y = y;
+            this.mejaLevo = mejaLevo;
+            this.mejaDesno = mejaDesno;
+
+            slikeHoje = new Image[]
+            {
+            Properties.Resources.D1,
+            Properties.Resources.D2,
+            Properties.Resources.D3,
+            Properties.Resources.D4,
+            Properties.Resources.D5,
+            Properties.Resources.D6,
+            Properties.Resources.D7,
+            Properties.Resources.D8
+            };
+        }
+
+        public void Posodobi()
+        {
+            x += smer * hitrost;
+
+            if (x < mejaLevo || x + width > mejaDesno)
+            {
+                smer *= -1;
+            }
+
+            if ((DateTime.Now - casZadnjeAnimacije).TotalMilliseconds >= MILISEKUND_NA_FRAME)
+            {
+                trenutniFrame = (trenutniFrame + 1) % slikeHoje.Length;
+                casZadnjeAnimacije = DateTime.Now;
+            }
+        }
+
+        public void Narisi(Graphics g, int kameraX)
+        {
+            Rectangle zaslonsko = new Rectangle(x - kameraX, y, width, height);
+            Image slika = slikeHoje[trenutniFrame];
+
+            if (smer == 1)
+            {
+                g.DrawImage(slika, zaslonsko);
+            }
+            else
+            {
+                g.DrawImage(slika, zaslonsko,
+                    new Rectangle(slika.Width, 0, -slika.Width, slika.Height), GraphicsUnit.Pixel);
+            }
+        }
+
+        public bool PreveriTrk(Rectangle mackaRect)
+        {
+            return Obmocje.IntersectsWith(mackaRect);
+        }
+    }
+
+    public class Ptica
+    {
+        private static Random rnd = new Random();
+        public int X;
+        public int Y;
+        private int frameIndex = 0;
+        private int frameDelay = 100;
+        private DateTime lastFrameTime = DateTime.Now;
+        public bool IsOffScreen => X < -100;
+        public Rectangle Obmocje => new Rectangle(X, Y, 80, 50);
+        public Image[] Frames;
+
+        public Ptica(int x, int y)
+        {
+            X = x;
+            Y = y;
+            Frames = new Image[]
+            {
+                Properties.Resources.P1,
+                Properties.Resources.P2,
+                Properties.Resources.P3,
+                Properties.Resources.P4,
+                Properties.Resources.P5,
+                Properties.Resources.P6,
+                Properties.Resources.P7
+            };
+        }
+
+        public void Posodobi()
+        {
+            X -= 5;
+            if ((DateTime.Now - lastFrameTime).TotalMilliseconds > frameDelay)
+            {
+                frameIndex = (frameIndex + 1) % Frames.Length;
+                lastFrameTime = DateTime.Now;
+            }
+        }
+
+        public void Narisi(Graphics g, int kameraX)
+        {
+            Rectangle dest = new Rectangle(X - kameraX, Y, 80, 50);
+            g.DrawImage(Frames[frameIndex], dest);
+        }
+
+        public bool PreveriTrk(Macka macka)
+        {
+            return Obmocje.IntersectsWith(macka.Obmocje);
         }
     }
 

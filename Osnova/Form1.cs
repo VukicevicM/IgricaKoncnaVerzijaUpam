@@ -12,7 +12,7 @@ using Knjiznica;
 
 namespace Osnova
 {
-    public partial class Lvl1 : Form
+    public partial class OsnovaForm : Form
     {
         private Image ozadje;
         private int premikKamere = 0;
@@ -21,14 +21,19 @@ namespace Osnova
         private bool levo, desno;
         private Block tlo;
         private CatBed postelja;
-        private int stTock = 0; // hardcoded for now
+        //private int stTock = 0; // hardcoded for now
         private bool fadeOut = false;
         private int fadeAlpha = 0;
         private int smrtnaMejaY;
         private bool gameOverTriggered = false;
 
+        private List<Ribica> ribice = new List<Ribica>();
+        private TimeSpan casVidneZbrane = TimeSpan.FromMilliseconds(500); // show collected fish image for 0.5s
 
-        public Lvl1()
+
+
+
+        public OsnovaForm()
         {
             this.Text = "Mačja Pustolovščina - Igra";
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -48,7 +53,7 @@ namespace Osnova
                 this.Size = Nastavitve.VelikostOkna;
             }
 
-            ozadje = Properties.Resources.test;
+            ozadje = Properties.Resources.Nebo2;
 
             tlo = Block.CreateGround(0, 5000);  // ONE long block now
 
@@ -56,6 +61,11 @@ namespace Osnova
             macka = new Macka(100, groundY - 100);
             postelja = new CatBed(4600, groundY - Block.StandardHeight);
             smrtnaMejaY = groundY + 300;
+
+            ribice.Add(new Ribica(500, tlo.Obmocje.Y - 50));
+            ribice.Add(new Ribica(900, tlo.Obmocje.Y - 150));
+            ribice.Add(new Ribica(1400, tlo.Obmocje.Y - 150));
+
 
             this.Paint += OsnovaForm_Paint;
             this.KeyDown += OsnovaForm_KeyDown;
@@ -78,8 +88,16 @@ namespace Osnova
 
             tlo.Narisi(g, premikKamere);
 
-            if (!fadeOut)
-                macka.Narisi(g, premikKamere);  // ✅ FIXED: kameraX passed in
+            if (!fadeOut) { macka.Narisi(g, premikKamere); }
+
+            foreach (var ribica in ribice)
+            {
+                if (ribica.JeSeVidna(casVidneZbrane))
+                {
+                    ribica.Narisi(g, premikKamere);
+                }
+            }
+
 
             postelja.Narisi(g, premikKamere);
 
@@ -104,7 +122,7 @@ namespace Osnova
         private void ZakljuciStopnjo()
         {
             string username = Nastavitve.ImeIgralca;
-            RazredBazaIgrice.PosodobiNivoInTocke(username, 1, stTock);
+            RazredBazaIgrice.PosodobiNivoInTocke(username, 1, macka.SteviloRibic);
             this.Close();
         }
 
@@ -156,6 +174,13 @@ namespace Osnova
                 premikKamere = macka.SvetX - 100;
 
             premikKamere = Math.Max(0, premikKamere);
+
+            foreach (var ribica in ribice)
+            {
+                ribica.Posodobi();
+                ribica.PreveriZajetje(macka);
+            }
+
 
             Invalidate();
         }

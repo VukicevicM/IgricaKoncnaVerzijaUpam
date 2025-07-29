@@ -144,5 +144,56 @@
   <ItemGroup>
     <None Include="Resources\PosteljaSaMackom.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\P9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\P8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\P7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\P6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\P5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\P4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\P3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\P2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\P1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

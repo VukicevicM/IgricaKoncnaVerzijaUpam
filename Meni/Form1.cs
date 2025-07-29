@@ -10,6 +10,10 @@ using System.Windows.Forms;
 using BazaIgrice;
 using UrejanjeNastavitev;
 using Osnova;
+using Nivo1;
+using Nivo2;
+using Nivo3;
+using Nivo4;
 
 namespace Meni
 {
@@ -158,12 +162,33 @@ namespace Meni
 
         private void ZaženiLevel(int nivo)
         {
-            //MessageBox.Show($"Začenjam Level {nivo} - tukaj bo odprta nova forma za igro.");
-            // TODO: Implementiraj zagon dejanske igre/forma za nivo
-            //Temporary
             this.Hide();
 
-            using (var levelForm = new Lvl1())
+            Form levelForm = null;
+
+            if (nivo == 1)
+            {
+                levelForm = new Lvl1();
+            }
+            if (nivo == 2)
+            {
+                levelForm = new Lvl2();
+            }
+            if (nivo == 3)
+            {
+                levelForm = new Lvl3();
+            }
+            if (nivo == 4)
+            {
+                levelForm = new Lvl4();
+            }
+            // Add more levels like this later:
+            // else if (nivo == 2)
+            // {
+            //     levelForm = new Lvl2();
+            // }
+
+            if (levelForm != null)
             {
                 levelForm.ShowDialog();
             }

@@ -81,6 +81,22 @@
       <Project>{aca27384-0c55-45a5-a816-44ef088aca13}</Project>
       <Name>BazaIgrice</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nivo1\Nivo1.csproj">
+      <Project>{eb078287-d0b1-4c6a-980a-0d13828e8783}</Project>
+      <Name>Nivo1</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nivo2\Nivo2.csproj">
+      <Project>{b2089d90-04c9-4f16-b78a-6eabf8633aba}</Project>
+      <Name>Nivo2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nivo3\Nivo3.csproj">
+      <Project>{86b69e98-0820-407d-9031-8f4c3937d852}</Project>
+      <Name>Nivo3</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nivo4\Nivo4.csproj">
+      <Project>{6b2f4a8f-308e-42f4-bddf-2f4a0a4c1821}</Project>
+      <Name>Nivo4</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Osnova\Osnova.csproj">
       <Project>{84acd03d-e65c-4fcf-8874-5d8ce40c81cd}</Project>
       <Name>Osnova</Name>

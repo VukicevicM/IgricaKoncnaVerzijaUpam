@@ -1,6 +1,6 @@
 ﻿namespace Osnova
 {
-    partial class Lvl1
+    partial class OsnovaForm
     {
         /// <summary>
         /// Required designer variable.
